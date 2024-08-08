@@ -33,6 +33,7 @@ class RoomCreatorIT {
 					} else if(input.equals("5 7\n")) {
 						return new Room(5, 7);
 					}
+					return null;
 				});
 
 			Room room = RoomCreator.createRoomWithValidation(scanner);
