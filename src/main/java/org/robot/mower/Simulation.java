@@ -3,7 +3,7 @@ package org.robot.mower;
 import org.robot.mower.global.Commands;
 import org.robot.mower.objects.Robot;
 import org.robot.mower.objects.Room;
-import org.robot.mower.ui.RoomVisualizer;
+import org.robot.mower.ui.TerminalVisualizer;
 import org.robot.mower.validator.RobotValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ public class Simulation {
 	private static final Logger logger = LoggerFactory.getLogger(Simulation.class);
 	private final Room room;
 	private final Robot robot;
-	private final RoomVisualizer visualizer;
+	private final TerminalVisualizer visualizer;
 
-	public Simulation(Room room, Robot robot, RoomVisualizer visualizer){
+	public Simulation(Room room, Robot robot, TerminalVisualizer visualizer){
 		this.room = room;
 		this.robot = robot;
 		this.visualizer = visualizer;
@@ -51,9 +51,7 @@ public class Simulation {
 
 	private void displayMap(){
 		if(this.visualizer != null) {
-			visualizer.updateMap(getRobot().getX(), getRobot().getY(), getRobot().getOrientation());
-			visualizer.displayMap();
-
+			visualizer.update(getRobot());
 		}
 	}
 	private void moveForward(){
