@@ -1,5 +1,5 @@
 # RobotMower
-Assignment for Devoteam to create a fun robot.
+Who does not love robot mowers
 # Prerequisites
 ## Requirements
 1. Three inputs from System.in: 
