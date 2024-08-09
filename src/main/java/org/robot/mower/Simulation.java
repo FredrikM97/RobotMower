@@ -11,20 +11,24 @@ public class Simulation {
 	private static final Logger logger = LoggerFactory.getLogger(Simulation.class);
 	private final Room room;
 	private final Robot robot;
+	private final RoomVisualizer visualizer;
+
+	public Simulation(Room room, Robot robot, RoomVisualizer visualizer){
+		this.room = room;
+		this.robot = robot;
+		this.visualizer = visualizer;
+	}
 
 	public Simulation(Room room, Robot robot){
 		this.room = room;
 		this.robot = robot;
+		this.visualizer = null;
 	}
 
 	public void useCommand(String input) {
 		char[] commands = input.toCharArray();
 
-		RoomVisualizer visualizer = new RoomVisualizer(getRoom().getHeight(), getRoom().getWidth());
-
-		visualizer.updateMap(getRobot().getX(), getRobot().getY(), getRobot().getOrientation());
-		visualizer.displayMap();
-
+		displayMap();
 		for (char command : commands) {
 			switch (Commands.valueOf(String.valueOf(command))) {
 				case L:
@@ -38,6 +42,12 @@ public class Simulation {
 					break;
 			}
 
+			displayMap();
+		}
+	}
+
+	private void displayMap(){
+		if(this.visualizer != null) {
 			visualizer.updateMap(getRobot().getX(), getRobot().getY(), getRobot().getOrientation());
 			visualizer.displayMap();
 		}
@@ -88,5 +98,9 @@ public class Simulation {
 
 	public String getReport(){
 		return "Report: %s %s %s".formatted(getRobot().getX(), getRobot().getY(), getRobot().getOrientation());
+	}
+
+	public boolean hasVisualizer() {
+		return this.visualizer != null;
 	}
 }

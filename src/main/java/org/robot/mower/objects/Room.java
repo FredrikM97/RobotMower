@@ -1,9 +1,6 @@
 package org.robot.mower.objects;
 
-import org.robot.mower.global.Orientation;
 import org.robot.mower.validator.InputValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Room {
 
@@ -18,7 +15,7 @@ public class Room {
 	}
 
 	public static Room fromInput(String input) {
-		InputValidator.validateRobotInput(input);
+		InputValidator.validateRoomInput(input);
 
 		String[] parts = input.split(" ");
 		int height = Integer.parseInt(parts[0]);

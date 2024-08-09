@@ -2,7 +2,7 @@ package org.robot.mower.validator;
 
 public class InputValidator {
     
-    private static final String ROBOT_INPUT_PATTERN = "\\d+ \\d+ \\w+";
+    private static final String ROBOT_INPUT_PATTERN = "\\d+ \\d+ [A-Za-z]";
     private static final String ROOM_INPUT_PATTERN = "\\d+ \\d+";
 
     public static void validateRobotInput(String input) {
