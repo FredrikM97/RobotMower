@@ -1,10 +1,8 @@
 package org.robot.mower;
 
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.robot.mower.objects.Robot;
 import org.robot.mower.objects.Room;
-import org.robot.mower.objects.RoomVisualizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,13 +25,16 @@ public class Main {
 		logger.info("Please enter the Robot position and orientation(x, y, orientation) separated by a space:");
 		Robot robot = Robot.fromInput(in.readLine());
 
-
-		Simulation simulation = new Simulation(room, robot, new RoomVisualizer(room.getWidth(), room.getHeight()));
+		Simulation simulation = SimulationFactory.createSimulation(config, room, robot);
 
 		logger.info("Give commands to your robot!");
-		simulation.useCommand(in.readLine());
+		var commands = in.readLine();
+		simulation.useCommand(commands);
 
+
+		logger.info("{} {}", room.getWidth(),room.getHeight());
+		logger.info("{} {} {}", robot.getX(), robot.getY(), robot.getOrientation());
+		logger.info("{}",commands);
 		logger.info(simulation.getReport());
-
 	}
 }

@@ -1,9 +1,9 @@
-package objects;
+package ui;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.robot.mower.global.Orientation;
-import org.robot.mower.objects.RoomVisualizer;
+import org.robot.mower.ui.RoomVisualizer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

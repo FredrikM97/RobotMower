@@ -1,4 +1,4 @@
-package org.robot.mower.objects;
+package org.robot.mower.ui;
 
 import org.robot.mower.global.Orientation;
 

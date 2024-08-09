@@ -1,8 +1,10 @@
 package objects;
 
 import org.junit.jupiter.api.Test;
+import org.robot.mower.Simulation;
 import org.robot.mower.global.Orientation;
 import org.robot.mower.objects.Robot;
+import org.robot.mower.objects.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -34,5 +36,25 @@ public class RobotTest {
 		String actualMessage = exception.getMessage();
 
 		assertTrue(actualMessage.contains(expectedMessage));
+	}
+
+	@Test
+	public void testTurnLeft() {
+		Robot robot = Robot.fromInput("1 2 N");
+		robot.turnLeft();
+
+		assertNotNull(robot);
+		assertEquals(Orientation.W, robot.getOrientation());
+	}
+
+
+
+	@Test
+	public void testTurnRight() {
+		Robot robot = Robot.fromInput("1 2 N");
+		robot.turnRight();
+
+		assertNotNull(robot);
+		assertEquals(Orientation.E, robot.getOrientation());
 	}
 }

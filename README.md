@@ -23,6 +23,8 @@ Så börjar origo i övre vänstra hörnet.
 * No support for lower case
 * if you type wrong you need to start over
 
+## Logging
+Change loglevel within logback.xml.
 ## Future
 * Since Simulation might take a lot of parmeters for bigger projects a builder pattern could be better than taking everything as parameter
 * Factory method is also a bit overkill but easier to read than a Ternary operator

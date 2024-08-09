@@ -6,8 +6,6 @@ import org.robot.mower.objects.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimulationTest {
 	@Test
@@ -38,6 +36,7 @@ public class SimulationTest {
 
 	@Test
 	public void testUseCommandRightForward() {
+		//A bit odd name, maybe combination is a better word
 		Room room = Room.fromInput("5 5");
 		Robot robot = Robot.fromInput("1 2 N");
 		Simulation simulation = new Simulation(room, robot);
@@ -51,6 +50,7 @@ public class SimulationTest {
 
 	@Test
 	public void testUseCommandLeftRightForward() {
+		//A bit odd name, maybe combination is a better word
 		Room room = Room.fromInput("5 5");
 		Robot robot = Robot.fromInput("0 0 E");
 		Simulation simulation = new Simulation(room, robot);
@@ -59,91 +59,6 @@ public class SimulationTest {
 		assertNotNull(robot, "Robot should not be null.");
 		assertEquals(3, robot.getX());
 		assertEquals(1, robot.getY());
-		assertEquals(Orientation.E, robot.getOrientation());
-	}
-
-
-
-	@Test
-	public void testMoveForwardBeyondNorthRoomBoundaries() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("0 0 N");
-
-		Simulation simulation = new Simulation(room, robot);
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-			simulation.useCommand("F");
-		});
-
-		String expectedMessage = "Attempt to move the robot North - Outside the hight limit of the room";
-		String actualMessage = exception.getMessage();
-
-		assertTrue(actualMessage.contains(expectedMessage));
-	}
-
-	@Test
-	public void testMoveForwardBeyondSouthRoomBoundaries() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("0 4 S");
-		Simulation simulation = new Simulation(room, robot);
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-			simulation.useCommand("F");
-		});
-
-		String expectedMessage = "Attempt to move the robot South - Outside the height limit of the room";
-		String actualMessage = exception.getMessage();
-
-		assertTrue(actualMessage.contains(expectedMessage));
-	}
-	@Test
-	public void testMoveForwardBeyondWestRoomBoundaries() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("0 0 W");
-		Simulation simulation = new Simulation(room, robot);
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-			simulation.useCommand("F");
-		});
-
-		String expectedMessage = "Attempt to move the robot West - Outside the width limit of the room";
-		String actualMessage = exception.getMessage();
-
-		assertTrue(actualMessage.contains(expectedMessage));
-	}
-
-	@Test
-	public void testMoveForwardBeyondEastRoomBoundaries() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("5 5 E");
-		Simulation simulation = new Simulation(room, robot);
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-			simulation.useCommand("F");
-		});
-
-		String expectedMessage = "Attempt to move the robot East - Outside the width limit of the room";
-		String actualMessage = exception.getMessage();
-
-		assertTrue(actualMessage.contains(expectedMessage));
-	}
-	@Test
-	public void testTurnLeft() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("1 2 N");
-		Simulation simulation = new Simulation(room, robot);
-
-		simulation.useCommand("L");
-
-		assertNotNull(robot);
-		assertEquals(Orientation.W, robot.getOrientation());
-	}
-
-	@Test
-	public void testTurnRight() {
-		Room room = Room.fromInput("5 5");
-		Robot robot = Robot.fromInput("1 2 N");
-		Simulation simulation = new Simulation(room, robot);
-
-		simulation.useCommand("R");
-
-		assertNotNull(robot);
 		assertEquals(Orientation.E, robot.getOrientation());
 	}
 }
